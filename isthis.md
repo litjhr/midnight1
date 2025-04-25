@@ -18,7 +18,7 @@ title: Welcome to my blog!
 
 <body>
     <h1>GitHub 仓库文件列表及链接</h1>
-    <div id="loading" >正在加载...&gt~&lt</div>
+    <div id="loading" >正在加载...>~< </div>
     <ul id="file-list"></ul>
     <script>
         const owner = 'litjhr';
