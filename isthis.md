@@ -22,8 +22,8 @@ title: Welcome to my blog!
     <ul id="file-list"></ul>
     <script>
         const owner = 'litjhr';
-        const repo = 'your-repository';
-        const path = 'your-folder-path';
+        const repo = 'midnight1';
+        const path = '_posts';
         const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         const loadingElement = document.getElementById('loading');
         const fileList = document.getElementById('file-list');
