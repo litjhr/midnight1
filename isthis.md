@@ -21,6 +21,7 @@ title: Welcome to my blog!
     <div id="loading">正在加载...~</div>
     <ul id="file-list"></ul>
     <script>
+        const token = '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';
         const owner = 'litjhr';
         const repo = 'midnight1';
         const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents`;
@@ -28,7 +29,12 @@ title: Welcome to my blog!
         const fileList = document.getElementById('file-list');
         // 显示加载提示
         loadingElement.style.display = 'block';
-        fetch(apiUrl)
+        fetch(apiUrl,{
+            headers: {
+            // 通过 Authorization 请求头携带令牌，使用 Bearer 认证方式
+            'Authorization': `Bearer ${token}`
+            }
+        })
           .then(response => {
                 if (!response.ok) {
                     throw new Error('网络响应不正常');
@@ -62,4 +68,4 @@ title: Welcome to my blog!
     </script>
 </body>
 
-</html>  
+</html>    
