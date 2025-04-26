@@ -23,8 +23,7 @@ title: Welcome to my blog!
     <script>
         const owner = 'litjhr';
         const repo = 'midnight1';
-        const path = '_posts';
-        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents`;
         const loadingElement = document.getElementById('loading');
         const fileList = document.getElementById('file-list');
         // 显示加载提示
@@ -40,12 +39,18 @@ title: Welcome to my blog!
                 // 隐藏加载提示
                 loadingElement.style.display = 'none';
                 data.forEach(item => {
-                    const listItem = document.createElement('li');
-                    const link = document.createElement('a');
-                    link.href = item.html_url;
-                    link.textContent = item.name;
-                    listItem.appendChild(link);
-                    fileList.appendChild(listItem);
+                    var startIndex = item.html_url.lastIndexOf('/') + 1;
+                    var endIndex = item.html_url.lastIndexOf('.', startIndex);
+                    var re1=item.html_url.substring(startIndex, endIndex)
+                    if (startIndex!== -1 && re1.slice(0, 2)== 'x_') {
+                        var result = `https://${owner}.github.io/${repo}/${re1}`;
+                        const listItem = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = result;
+                        link.textContent = item.name;
+                        listItem.appendChild(link);
+                        fileList.appendChild(listItem);
+                    }
                 });
             })
           .catch(error => {
