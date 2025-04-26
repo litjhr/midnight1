@@ -18,7 +18,7 @@ title: Welcome to my blog!
 
 <body>
     <h1>GitHub 仓库文件列表及链接</h1>
-    <div id="loading" >正在加载...>~< </div>
+    <div id="loading">正在加载...~</div>
     <ul id="file-list"></ul>
     <script>
         const owner = 'litjhr';
@@ -39,11 +39,12 @@ title: Welcome to my blog!
                 // 隐藏加载提示
                 loadingElement.style.display = 'none';
                 data.forEach(item => {
-                    var startIndex = item.html_url.lastIndexOf('/') + 1;
-                    var endIndex = item.html_url.lastIndexOf('.', startIndex);
-                    var re1=item.html_url.substring(startIndex, endIndex)
-                    if (startIndex!== -1 && re1.slice(0, 2)== 'x_') {
-                        var result = `https://${owner}.github.io/${repo}/${re1}`;
+                    // 提取文件名
+                    const startIndex = item.html_url.lastIndexOf('/') + 1;
+                    const fileName = item.html_url.slice(startIndex);
+                    const nameWithoutExtension = fileName.split('.')[0];
+                    if (nameWithoutExtension.slice(0, 2) === 'x_') {
+                        const result = `https://${owner}.github.io/${repo}/${nameWithoutExtension}`;
                         const listItem = document.createElement('li');
                         const link = document.createElement('a');
                         link.href = result;
